@@ -1,5 +1,6 @@
 package parser;
 
+import gameObject.GameObject;
 import gameObject.Stat;
 import gameObject.Stats;
 import gameObject.action.Action;
@@ -64,6 +65,14 @@ public class MakeDefaults {
 
         passableList.add(GridConstants.DEFAULT_PASS_EVERYTHING);
 
+        grid.Tile Black = new grid.Tile();
+        Black.setName("Black");
+        Black.setImagePath("resources/black.png");
+        Black.setStats(defaultStats);
+        Black.setActive(false);
+        Black.setMoveCost(1);
+        Black.setPassableList(passableList);
+        
         grid.Tile Grass = new grid.Tile();
         Grass.setName("Long Grass");
         Grass.setImagePath("resources/grass1.png");
@@ -71,81 +80,9 @@ public class MakeDefaults {
         Grass.setActive(false);
         Grass.setMoveCost(1);
         Grass.setPassableList(passableList);        
-
-        grid.Tile Grass1 = new grid.Tile();
-        Grass1.setName("Short Grass");
-        Grass1.setImagePath("resources/grass.png");
-        Grass1.setStats(defaultStats);
-        Grass1.setActive(false);
-        Grass1.setMoveCost(1);
-        Grass1.setPassableList(passableList);
-
-        grid.Tile Water = new grid.Tile();
-        Water.setName("Water");
-        Water.setImagePath("resources/water.png");
-        Water.setStats(defaultStats);
-        Water.setActive(false);
-        Water.setMoveCost(2);
-
-        grid.Tile Lava = new grid.Tile();
-        Lava.setName("Lava");
-        Lava.setImagePath("resources/lava.png");
-        Lava.setStats(defaultStats);
-        Lava.setActive(false);
-        Lava.setMoveCost(3);
-
-        grid.Tile Brick = new grid.Tile();
-        Brick.setName("Brick");
-        Brick.setImagePath("resources/brick.png");
-        Brick.setStats(defaultStats);
-        Brick.setActive(false);
-        Brick.setMoveCost(1);
-
-        grid.Tile Rock = new grid.Tile();
-        Rock.setName("Rock");
-        Rock.setImagePath("resources/rocks.png");
-        Rock.setStats(defaultStats);
-        Rock.setActive(false);
-        Rock.setMoveCost(1);
-
-        grid.Tile Stone = new grid.Tile();
-        Stone.setName("Stone");
-        Stone.setImagePath("resources/stone.png");
-        Stone.setStats(defaultStats);
-        Stone.setActive(false);
-        Stone.setMoveCost(1);
-
-        grid.Tile Sand = new grid.Tile();
-        Sand.setName("Sand");
-        Sand.setImagePath("resources/sand.png");
-        Sand.setStats(defaultStats);
-        Sand.setActive(false);
-        Sand.setMoveCost(1);
-
-        grid.Tile Brush = new grid.Tile();
-        Brush.setName("Brush");
-        Brush.setImagePath("resources/brush.png");
-        Brush.setStats(defaultStats);
-        Brush.setActive(false);
-        Brush.setMoveCost(1);
-
-        grid.Tile Dirt = new grid.Tile();
-        Dirt.setName("Dirt");
-        Dirt.setImagePath("resources/dirt.png");
-        Dirt.setStats(defaultStats);
-        Dirt.setActive(false);
-        Dirt.setMoveCost(1);
-
-        list.add(Grass);
-        list.add(Grass1);
-        list.add(Brush);
-        list.add(Water);
-        list.add(Lava);
-        list.add(Brick);
-        list.add(Rock);
-        list.add(Stone);
-        list.add(Sand);
-        list.add(Dirt);
+        
+        list.add(Black);
+        list.add(Grass);        
 
         p.createJSON("defaults/" + GridConstants.TILE, list);
     }
@@ -154,6 +91,94 @@ public class MakeDefaults {
         java.util.ArrayList<gameObject.GameObject> list =
                 new java.util.ArrayList<gameObject.GameObject>();
 
+        gameObject.GameObject bigPellet = new gameObject.GameObject();
+        bigPellet.setName("Big Pellet");
+        bigPellet.setImagePath("resources/bigpellet.png");
+        
+        gameObject.GameObject pellet = new gameObject.GameObject();
+        pellet.setName("pellet");
+        pellet.setImagePath("resources/pellet.png");
+        
+        gameObject.GameObject hr = new gameObject.GameObject();
+        hr.setName("Horizontal Right Wall");
+        hr.setImagePath("resources/hr.png");
+        
+        gameObject.GameObject hl = new gameObject.GameObject();
+        hl.setName("Horizontal Left Wall");
+        hl.setImagePath("resources/hl.png");
+        
+        gameObject.GameObject h2 = new gameObject.GameObject();
+        h2.setName("Horizontal Double Wall");
+        h2.setImagePath("resources/h2.png");
+        
+        gameObject.GameObject vt = new gameObject.GameObject();
+        vt.setName("Vertical Top Wall");
+        vt.setImagePath("resources/vt.png");
+        
+        gameObject.GameObject vb = new gameObject.GameObject();
+        vb.setName("Vertical Bottom Wall");
+        vb.setImagePath("resources/vb.png");
+        
+        gameObject.GameObject v2 = new gameObject.GameObject();
+        v2.setName("Vertical Double Wall");
+        v2.setImagePath("resources/v2.png");
+        
+        gameObject.GameObject tl = new gameObject.GameObject();
+        tl.setName("Top Left Corner Wall");
+        tl.setImagePath("resources/tl.png");
+        
+        gameObject.GameObject tli = new gameObject.GameObject();
+        tli.setName("Top Left Inner Corner Wall");
+        tli.setImagePath("resources/tl.png");
+        
+        gameObject.GameObject tl2 = new gameObject.GameObject();
+        tl2.setName("Top Left Double Corner Wall");
+        tl2.setImagePath("resources/tl2.png");
+        
+        gameObject.GameObject tr = new gameObject.GameObject();
+        tr.setName("Top Right Corner Wall");
+        tr.setImagePath("resources/tr.png");
+        
+        gameObject.GameObject tri = new gameObject.GameObject();
+        tri.setName("Top Right Inner Corner Wall");
+        tri.setImagePath("resources/tr.png");
+        
+        gameObject.GameObject tr2 = new gameObject.GameObject();
+        tr2.setName("Top Right Double Corner Wall");
+        tr2.setImagePath("resources/tr2.png");
+        
+        gameObject.GameObject bl = new gameObject.GameObject();
+        bl.setName("Bottom Left Corner Wall");
+        bl.setImagePath("resources/bl.png");
+        
+        gameObject.GameObject bli = new gameObject.GameObject();
+        bli.setName("Bottom Left Inner Corner Wall");
+        bli.setImagePath("resources/bl.png");
+        
+        gameObject.GameObject bl2 = new gameObject.GameObject();
+        bl2.setName("Bottom Left Double Corner Wall");
+        bl2.setImagePath("resources/bl2.png");
+        
+        gameObject.GameObject br = new gameObject.GameObject();
+        br.setName("Bottom Right Corner Wall");
+        br.setImagePath("resources/br.png");
+        
+        gameObject.GameObject bri = new gameObject.GameObject();
+        bri.setName("Bottom Right Inner Corner Wall");
+        bri.setImagePath("resources/br.png");
+        
+        gameObject.GameObject br2 = new gameObject.GameObject();
+        br2.setName("Bottom Right Double Corner Wall");
+        br2.setImagePath("resources/br2.png");
+        
+        gameObject.GameObject le = new gameObject.GameObject();
+        le.setName("Left End Wall");
+        le.setImagePath("resources/le.png");
+        
+        gameObject.GameObject re = new gameObject.GameObject();
+        re.setName("Right End Wall");
+        re.setImagePath("resources/re.png");
+        
         gameObject.Chest chest = new gameObject.Chest();
         chest.setName("Chest");
         chest.setImagePath("resources/chest.png");
@@ -162,18 +187,30 @@ public class MakeDefaults {
         shop.setName("Shop");
         shop.setImagePath("resources/shop.png");
 
-        gameObject.GameObject tree = new gameObject.GameObject();
-        tree.setName("Tree");
-        tree.setImagePath("resources/tree.png");
-
-        gameObject.GameObject stone = new gameObject.GameObject();
-        stone.setName("Stone");
-        stone.setImagePath("resources/stone1.png");
-
+        list.add(bigPellet);
+        list.add(pellet);
+        list.add(hr);
+        list.add(hl);
+        list.add(h2);
+        list.add(vt);
+        list.add(vb);
+        list.add(v2);
+        list.add(tl);
+        list.add(tli);
+        list.add(tl2);
+        list.add(tr);
+        list.add(tri);
+        list.add(tr2);
+        list.add(bl);
+        list.add(bli);
+        list.add(bl2);
+        list.add(br);
+        list.add(bri);
+        list.add(br2);
+        list.add(le);
+        list.add(re);
         list.add(chest);
         list.add(shop);
-        list.add(tree);
-        list.add(stone);
 
         p.createJSON("defaults/" + GridConstants.GAMEOBJECT, list);
     }
@@ -190,41 +227,41 @@ public class MakeDefaults {
         unitStats.modExisting("maxhealth", unitStats.getStatValue("health"));
 
         gameObject.GameUnit hero = new gameObject.GameUnit();
-        gameObject.GameUnit goldensun = new gameObject.GameUnit();
-        gameObject.GameUnit enemy = new gameObject.GameUnit();
-        gameObject.GameUnit charizard = new gameObject.GameUnit();
-        gameObject.GameUnit roy = new gameObject.GameUnit();
+        gameObject.GameUnit ghostorange = new gameObject.GameUnit();
+        gameObject.GameUnit ghostpink = new gameObject.GameUnit();
+        gameObject.GameUnit ghostblue = new gameObject.GameUnit();
+        gameObject.GameUnit pacman = new gameObject.GameUnit();
 
+        ghostorange.setName("Orange Ghost");
+        ghostorange.setImagePath("resources/ghostorange.png");
+        ghostorange.setStats(unitStats);
+        ghostorange.setAffiliation("enemy");
+        
+        ghostpink.setName("Pink Ghost");
+        ghostpink.setImagePath("resources/ghostpink.png");
+        ghostpink.setStats(unitStats);
+        ghostpink.setAffiliation("enemy");
+        
+        ghostblue.setName("Blue Ghost");
+        ghostblue.setImagePath("resources/ghostblue.png");
+        ghostblue.setStats(unitStats);
+        ghostblue.setAffiliation("enemy");
+        
+        pacman.setName("Pacman");
+        pacman.setImagePath("resources/pacman.png");
+        pacman.setStats(unitStats);
+        pacman.setAffiliation("player");
+        
         hero.setName("hero");
         hero.setImagePath("resources/hero.png");
         hero.setStats(unitStats);
         hero.setAffiliation("player");
 
-        goldensun.setName("Golden Sun");
-        goldensun.setImagePath("resources/goldensun.png");
-        goldensun.setStats(unitStats);
-        goldensun.setAffiliation("player");
-
-        enemy.setName("Enemy");
-        enemy.setImagePath("resources/enemy.png");
-        enemy.setStats(unitStats);
-        enemy.setAffiliation("enemy");
-
-        charizard.setName("Dragon");
-        charizard.setImagePath("resources/charizard.png");
-        charizard.setStats(unitStats);
-        charizard.setAffiliation("enemy");
-
-        roy.setName("Roy");
-        roy.setImagePath("resources/roy.png");
-        roy.setStats(unitStats);
-        roy.setAffiliation("enemy");
-
-        list.add(hero);
-        list.add(goldensun);
-        list.add(enemy);
-        list.add(charizard);
-        list.add(roy);
+        list.add(ghostorange);
+        list.add(ghostblue);
+        list.add(ghostpink);
+        list.add(pacman);
+        list.add(hero);     
 
         p.createJSON("defaults/" + GridConstants.GAMEUNIT, list);
     }
